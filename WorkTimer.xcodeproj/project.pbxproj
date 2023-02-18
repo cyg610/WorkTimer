@@ -14,6 +14,9 @@
 		B450D1E4299D5E7600CDEE82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E2299D5E7600CDEE82 /* Main.storyboard */; };
 		B450D1E6299D5E7700CDEE82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E5299D5E7700CDEE82 /* Assets.xcassets */; };
 		B450D1E9299D5E7700CDEE82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E7299D5E7700CDEE82 /* LaunchScreen.storyboard */; };
+		B4D7AF94299E694700AC5F3B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF93299E694700AC5F3B /* UserDefaultsManager.swift */; };
+		B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF95299E6A8400AC5F3B /* DateManager.swift */; };
+		B4D7AF99299E74DA00AC5F3B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		B450D1E5299D5E7700CDEE82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B450D1E8299D5E7700CDEE82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B450D1EA299D5E7700CDEE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4D7AF93299E694700AC5F3B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		B4D7AF95299E6A8400AC5F3B /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +62,6 @@
 				465B756973AD02A44BFD45D5 /* Pods-WorkTimer.debug.xcconfig */,
 				1FB496D1C3B46E754862C1E6 /* Pods-WorkTimer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,6 +86,7 @@
 		B450D1DB299D5E7600CDEE82 /* WorkTimer */ = {
 			isa = PBXGroup;
 			children = (
+				B4D7AF97299E6A8C00AC5F3B /* Util */,
 				B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */,
 				B450D1DE299D5E7600CDEE82 /* SceneDelegate.swift */,
 				B450D1E0299D5E7600CDEE82 /* ViewController.swift */,
@@ -90,6 +96,16 @@
 				B450D1EA299D5E7700CDEE82 /* Info.plist */,
 			);
 			path = WorkTimer;
+			sourceTree = "<group>";
+		};
+		B4D7AF97299E6A8C00AC5F3B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B4D7AF93299E694700AC5F3B /* UserDefaultsManager.swift */,
+				B4D7AF95299E6A8400AC5F3B /* DateManager.swift */,
+				B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D7AF99299E74DA00AC5F3B /* NotificationManager.swift in Sources */,
+				B4D7AF94299E694700AC5F3B /* UserDefaultsManager.swift in Sources */,
+				B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */,
 				B450D1E1299D5E7600CDEE82 /* ViewController.swift in Sources */,
 				B450D1DD299D5E7600CDEE82 /* AppDelegate.swift in Sources */,
 				B450D1DF299D5E7600CDEE82 /* SceneDelegate.swift in Sources */,
@@ -339,13 +358,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K33GDCK76S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkTimer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치정보 제공에 동의하십니까";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치정보 제공에 동의하십니까";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,13 +391,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K33GDCK76S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkTimer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치정보 제공에 동의하십니까";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치정보 제공에 동의하십니까";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
