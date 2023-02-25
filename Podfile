@@ -6,5 +6,7 @@ target 'WorkTimer' do
   use_frameworks!
 
   # Pods for WorkTimer
+  pod 'GoogleMaps'
+  pod 'GooglePlaces', '7.3.0'
 
 end
