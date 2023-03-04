@@ -7,8 +7,16 @@
 
 import UIKit
 import CoreLocation
+import GoogleMaps
 
-class ViewController: UIViewController {
+
+class MainVC: UIViewController {
+    
+    let defaultTimeString = "00:00:00"
+    
+    let currentMarker = GMSMarker() // 마커 객체 생성
+    var locationLatitude : CLLocationDegrees = 0
+    var locationLongitude : CLLocationDegrees = 0
     
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var timeInfoLabel: UILabel!
@@ -17,6 +25,27 @@ class ViewController: UIViewController {
             resetButton.layer.cornerRadius = 5
         }
     }
+    
+    @IBOutlet weak var googleMapView: GMSMapView! {
+        didSet {
+            currentMarker.icon = #imageLiteral(resourceName: "redMarker")
+            currentMarker.map = googleMapView // 마커를 표시할 맵
+        }
+    }
+    
+    @IBOutlet weak var currentIconImageView: UIImageView!
+    
+    @IBOutlet weak var destinationLabel: UILabel! {
+        didSet {
+            destinationLabel.text = UserDefaultsManager.destinationLocation
+        }
+    }
+    @IBOutlet weak var searchLocationBtn: UIButton! {
+        didSet {
+            searchLocationBtn.layer.cornerRadius = 5
+        }
+    }
+    
     
     var locationManager = CLLocationManager.init()
     var geocoder = CLGeocoder.init()
@@ -32,17 +61,61 @@ class ViewController: UIViewController {
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        self.timeInfoLabel.text = UserDefaultsManager.workStartTime
-            
+        self.timeInfoLabel.text = setTimeInfo()
+        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        destinationLabel.text = UserDefaultsManager.destinationLocation
+    }
+    
     
     @IBAction func resetBtnAction(_ sender: Any) {
         UserDefaultsManager.workStartTime = ""
+        self.timeInfoLabel.text = setTimeInfo()
+        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
+    }
+    
+    @IBAction func searchLocationBtnAction(_ sender: Any) {
+        guard let welcomeVC =  self.storyboard?.instantiateViewController(withIdentifier: "searchLocationVC") as? searchLocationVC else {return}
+            
+        welcomeVC.modalPresentationStyle = .fullScreen
+        self.present(welcomeVC, animated: true, completion: nil)
+    }
+    
+    
+    func setTimeInfo() -> String{
+        if let timer = UserDefaultsManager.workStartTime, timer != "" {
+            let timeArray = timer.split(separator: " ")
+            return String(timeArray[1])
+        }else {
+            return defaultTimeString
+        }
+    }
+    
+    func setTimeInfoColor(timeText : String) {
+        if timeText == defaultTimeString {
+            self.timeInfoLabel.textColor = UIColor.gray
+        } else {
+            self.timeInfoLabel.textColor = UIColor.black
+        }
+    }
+    
+    func setCurrentMarker() {
+    
+        currentMarker.position = CLLocationCoordinate2D(latitude: locationLatitude, longitude: locationLongitude)
+        // 마커의 위치를 현재 위도, 경도로 설정
+    }
+    
+    func setGoogleMap() {
+        let camera = GMSCameraPosition(latitude: locationLatitude, longitude: locationLongitude, zoom: 17) //현재 위도, 경도로 카메라를 이동, 줌 레벨(확대되는 정도)는 17로 설정
+        googleMapView.camera = camera
     }
     
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension MainVC: CLLocationManagerDelegate {
     
     func getLocationUsagePermission() {
            self.locationManager.requestWhenInUseAuthorization()
@@ -52,8 +125,13 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         //위도, 경도 가져오기
+        locationLatitude = locValue.latitude
+        locationLongitude = locValue.longitude
         currentLocation = "\(locValue.latitude), \(locValue.longitude)"
         findAddress(location: manager.location)
+        
+        setGoogleMap()
+        setCurrentMarker()
         
     }
     
@@ -75,7 +153,7 @@ extension ViewController: CLLocationManagerDelegate {
     
     func findAddress(location : CLLocation?) {
         if location != nil {
-            geocoder.reverseGeocodeLocation(location!) {placemarks,error in
+            geocoder.reverseGeocodeLocation(location!) { [self]placemarks,error in
                 if error != nil { return }
                 
                 if let placemarks = placemarks?.first {
@@ -91,11 +169,11 @@ extension ViewController: CLLocationManagerDelegate {
                     
                    
                     self.currentLabel.text = address
-                
-                    if self.timeInfoLabel.text == "", (address.contains("대치동") || address.contains("테헤란로")) {
+                    if self.timeInfoLabel.text == defaultTimeString {
                         
                         UserDefaultsManager.workStartTime = DateManager.shared.getDataToString(Date())
-                        self.timeInfoLabel.text = UserDefaultsManager.workStartTime
+                        self.timeInfoLabel.text = self.setTimeInfo()
+                        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
                         NotificationManager.shared.requestSendNoti(timer: UserDefaultsManager.workStartTime)
 
                     }

@@ -12,6 +12,10 @@ class UserDefaultsManager {
     @UserDefault(key: "workStartTime", defaultValue: "")
     static var workStartTime :  String?
     
+    @UserDefault(key: "destinationLocation", defaultValue: "")
+    static var destinationLocation :  String?
+    
+    
 }
 
 

@@ -10,13 +10,14 @@
 		510282FBECCFF3088022AAA4 /* Pods_WorkTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D117DF83B03430E18B0E3DA /* Pods_WorkTimer.framework */; };
 		B450D1DD299D5E7600CDEE82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */; };
 		B450D1DF299D5E7600CDEE82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1DE299D5E7600CDEE82 /* SceneDelegate.swift */; };
-		B450D1E1299D5E7600CDEE82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1E0299D5E7600CDEE82 /* ViewController.swift */; };
+		B450D1E1299D5E7600CDEE82 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1E0299D5E7600CDEE82 /* MainVC.swift */; };
 		B450D1E4299D5E7600CDEE82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E2299D5E7600CDEE82 /* Main.storyboard */; };
 		B450D1E6299D5E7700CDEE82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E5299D5E7700CDEE82 /* Assets.xcassets */; };
 		B450D1E9299D5E7700CDEE82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B450D1E7299D5E7700CDEE82 /* LaunchScreen.storyboard */; };
 		B4D7AF94299E694700AC5F3B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF93299E694700AC5F3B /* UserDefaultsManager.swift */; };
 		B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF95299E6A8400AC5F3B /* DateManager.swift */; };
 		B4D7AF99299E74DA00AC5F3B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */; };
+		B4D7AF9E29A5D10500AC5F3B /* searchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF9D29A5D10500AC5F3B /* searchLocationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,7 @@
 		B450D1D9299D5E7600CDEE82 /* WorkTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B450D1DE299D5E7600CDEE82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B450D1E0299D5E7600CDEE82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B450D1E0299D5E7600CDEE82 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		B450D1E3299D5E7600CDEE82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B450D1E5299D5E7700CDEE82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B450D1E8299D5E7700CDEE82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 		B4D7AF93299E694700AC5F3B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		B4D7AF95299E6A8400AC5F3B /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		B4D7AF9D29A5D10500AC5F3B /* searchLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchLocationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +91,8 @@
 				B4D7AF97299E6A8C00AC5F3B /* Util */,
 				B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */,
 				B450D1DE299D5E7600CDEE82 /* SceneDelegate.swift */,
-				B450D1E0299D5E7600CDEE82 /* ViewController.swift */,
+				B4D7AF9D29A5D10500AC5F3B /* searchLocationVC.swift */,
+				B450D1E0299D5E7600CDEE82 /* MainVC.swift */,
 				B450D1E2299D5E7600CDEE82 /* Main.storyboard */,
 				B450D1E5299D5E7700CDEE82 /* Assets.xcassets */,
 				B450D1E7299D5E7700CDEE82 /* LaunchScreen.storyboard */,
@@ -119,6 +122,7 @@
 				B450D1D5299D5E7600CDEE82 /* Sources */,
 				B450D1D6299D5E7600CDEE82 /* Frameworks */,
 				B450D1D7299D5E7600CDEE82 /* Resources */,
+				F4545B9C53C2FF09053220AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,6 +202,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F4545B9C53C2FF09053220AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkTimer/Pods-WorkTimer-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkTimer/Pods-WorkTimer-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkTimer/Pods-WorkTimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -208,7 +229,8 @@
 				B4D7AF99299E74DA00AC5F3B /* NotificationManager.swift in Sources */,
 				B4D7AF94299E694700AC5F3B /* UserDefaultsManager.swift in Sources */,
 				B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */,
-				B450D1E1299D5E7600CDEE82 /* ViewController.swift in Sources */,
+				B450D1E1299D5E7600CDEE82 /* MainVC.swift in Sources */,
+				B4D7AF9E29A5D10500AC5F3B /* searchLocationVC.swift in Sources */,
 				B450D1DD299D5E7600CDEE82 /* AppDelegate.swift in Sources */,
 				B450D1DF299D5E7600CDEE82 /* SceneDelegate.swift in Sources */,
 			);
