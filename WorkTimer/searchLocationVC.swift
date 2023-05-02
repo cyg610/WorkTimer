@@ -63,7 +63,27 @@ extension searchLocationVC : GMSAutocompleteTableDataSourceDelegate {
     }
     
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didSelect prediction: GMSAutocompletePrediction) -> Bool {
-        UserDefaultsManager.destinationLocation = prediction.attributedFullText.string
+        UserDefaultsManager.destinationAdress = prediction.attributedFullText.string
+        
+        let placeID = prediction.placeID
+        let placesClient = GMSPlacesClient.shared()
+        placesClient.lookUpPlaceID(placeID) { (place, error) in
+            
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let place = place else {
+                print("No place details for \(placeID)")
+                return
+            }
+
+            UserDefaultsManager.destinationLatitude = place.coordinate.latitude
+            UserDefaultsManager.destinationLongitude = place.coordinate.longitude
+            
+        }
+         
         self.dismiss(animated: true)
         return true
      }

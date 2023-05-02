@@ -6,15 +6,21 @@
 //
 
 import Foundation
+import CoreLocation
 
 class UserDefaultsManager {
     
     @UserDefault(key: "workStartTime", defaultValue: "")
     static var workStartTime :  String?
     
-    @UserDefault(key: "destinationLocation", defaultValue: "")
-    static var destinationLocation :  String?
+    @UserDefault(key: "destinationAdress", defaultValue: "")
+    static var destinationAdress :  String?
     
+    @UserDefault(key: "destinationLatitude", defaultValue: CLLocationDegrees.init())
+    static var destinationLatitude :  CLLocationDegrees?
+    
+    @UserDefault(key: "destinationLongitude", defaultValue: CLLocationDegrees.init())
+    static var destinationLongitude :  CLLocationDegrees?
     
 }
 

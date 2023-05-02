@@ -37,7 +37,7 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var destinationLabel: UILabel! {
         didSet {
-            destinationLabel.text = UserDefaultsManager.destinationLocation
+            destinationLabel.text = UserDefaultsManager.destinationAdress
         }
     }
     @IBOutlet weak var searchLocationBtn: UIButton! {
@@ -67,7 +67,8 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        destinationLabel.text = UserDefaultsManager.destinationLocation
+        destinationLabel.text = UserDefaultsManager.destinationAdress
+        findAddress(location: locationManager.location)
     }
     
     
@@ -135,6 +136,27 @@ extension MainVC: CLLocationManagerDelegate {
         
     }
     
+    func compareDistance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {
+        let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let to = CLLocation(latitude: to.latitude, longitude: to.longitude)
+        return from.distance(from: to)
+    }
+    
+    func getAdress(placemarks : [CLPlacemark]?) -> String {
+        var address = ""
+        
+        if let place = placemarks?.first {
+            if let thoroughfare = place.thoroughfare {
+                address = "\(address) \(thoroughfare)"
+            }
+            
+            if let subThoroughface = place.subThoroughfare {
+                address = "\(address) \(subThoroughface)"
+            }
+        }
+        return address
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
                 case .authorizedAlways, .authorizedWhenInUse:
@@ -152,34 +174,30 @@ extension MainVC: CLLocationManagerDelegate {
     }
     
     func findAddress(location : CLLocation?) {
-        if location != nil {
-            geocoder.reverseGeocodeLocation(location!) { [self]placemarks,error in
+        if let location = location {
+            geocoder.reverseGeocodeLocation(location) { [self] placemarks,error in
                 if error != nil { return }
                 
-                if let placemarks = placemarks?.first {
-                    var address = ""
-                    
-                    if let thoroughfare = placemarks.thoroughfare {
-                        address = "\(address) \(thoroughfare)"
-                    }
-                    
-                    if let subThoroughface = placemarks.subThoroughfare {
-                        address = "\(address) \(subThoroughface)"
-                    }
-                    
-                   
-                    self.currentLabel.text = address
-                    if self.timeInfoLabel.text == defaultTimeString {
+                self.currentLabel.text = getAdress(placemarks: placemarks)
+                
+                if self.timeInfoLabel.text == defaultTimeString {
                         
-                        UserDefaultsManager.workStartTime = DateManager.shared.getDataToString(Date())
-                        self.timeInfoLabel.text = self.setTimeInfo()
-                        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
-                        NotificationManager.shared.requestSendNoti(timer: UserDefaultsManager.workStartTime)
-
+                    let cLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        
+                    if let dLat = UserDefaultsManager.destinationLatitude, let dLon = UserDefaultsManager.destinationLongitude{
+                            
+                        let dLocation = CLLocationCoordinate2D(latitude: dLat, longitude: dLon)
+                        
+                        let distance = compareDistance(from: cLocation, to: dLocation)
+                            
+                        if distance <= 10 {
+                                UserDefaultsManager.workStartTime = DateManager.shared.getDataToString(Date())
+                                self.timeInfoLabel.text = self.setTimeInfo()
+                                setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
+                                NotificationManager.shared.requestSendNoti(timer: UserDefaultsManager.workStartTime)
+                        }
                     }
-                    
-                    
-                 }
+                }
             }
         }
     }
