@@ -140,6 +140,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="checkmark" catalog="system" cornerStyle="dynamic">
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveTimeBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U6I-Hy-eCs"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -245,13 +248,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="barContentView" destination="hP5-Yq-jSG" id="sky-vM-kvk"/>
                         <outlet property="currentIconImageView" destination="VZZ-4e-qAG" id="DW6-mz-dsQ"/>
                         <outlet property="currentLabel" destination="XJn-HV-FTS" id="VEU-iN-4Cc"/>
                         <outlet property="destinationLabel" destination="gzH-0L-yay" id="ICb-cE-hVe"/>
+                        <outlet property="endTimeLabel" destination="7C3-zh-tzW" id="07m-sR-zzm"/>
                         <outlet property="googleMapView" destination="43K-xk-Fah" id="bHw-zk-clo"/>
                         <outlet property="resetButton" destination="wyH-MF-XRP" id="1zj-BS-ips"/>
+                        <outlet property="saveTimeBtn" destination="tV0-RT-ToC" id="i32-jI-jD5"/>
                         <outlet property="searchLocationBtn" destination="WfO-GU-MzM" id="1y1-SA-XrU"/>
-                        <outlet property="timeInfoLabel" destination="keu-8a-nmS" id="xID-HQ-bNz"/>
+                        <outlet property="startTimeLabel" destination="keu-8a-nmS" id="xID-HQ-bNz"/>
                         <segue destination="ZxZ-63-ae4" kind="presentation" identifier="searchLocationVC" id="PjW-qe-twI"/>
                     </connections>
                 </viewController>

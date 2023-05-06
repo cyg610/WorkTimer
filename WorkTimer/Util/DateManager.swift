@@ -18,6 +18,12 @@ class DateManager {
         return current_date_string
     }
     
+    func getTimeToString(_ date : Date) -> String {
+        formatter.dateFormat = "HH:mm:ss"
+        let time = formatter.string(from: date)
+        return time
+    }
+    
     func comparedDateToReset() {
         formatter.dateFormat = "MMdd"
         let beforeDayString = UserDefaultsManager.workStartTime

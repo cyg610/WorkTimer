@@ -18,8 +18,16 @@ class MainVC: UIViewController {
     var locationLatitude : CLLocationDegrees = 0
     var locationLongitude : CLLocationDegrees = 0
     
+    
+    @IBOutlet weak var barContentView: UIView! {
+        didSet {
+            barContentView.layer.cornerRadius = 5
+            barContentView.layer.shadowColor = UIColor.gray.cgColor
+        }
+    }
+    
     @IBOutlet weak var currentLabel: UILabel!
-    @IBOutlet weak var timeInfoLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton! {
         didSet {
             resetButton.layer.cornerRadius = 5
@@ -47,6 +55,21 @@ class MainVC: UIViewController {
     }
     
     
+    
+    @IBOutlet weak var endTimeLabel: UILabel! {
+        didSet {
+            endTimeLabel.textColor = UIColor.gray
+            endTimeLabel.text = defaultTimeString
+        }
+    }
+    
+    @IBOutlet weak var saveTimeBtn: UIButton! {
+        didSet {
+            saveTimeBtn.layer.cornerRadius = 5
+        }
+    }
+    
+    
     var locationManager = CLLocationManager.init()
     var geocoder = CLGeocoder.init()
     var currentLocation: String = ""
@@ -61,8 +84,8 @@ class MainVC: UIViewController {
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        self.timeInfoLabel.text = setTimeInfo()
-        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
+        self.startTimeLabel.text = setTimeInfo()
+        setTimeInfoColor(timeText: self.startTimeLabel.text ?? defaultTimeString)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +97,8 @@ class MainVC: UIViewController {
     
     @IBAction func resetBtnAction(_ sender: Any) {
         UserDefaultsManager.workStartTime = ""
-        self.timeInfoLabel.text = setTimeInfo()
-        setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
+        self.startTimeLabel.text = setTimeInfo()
+        setTimeInfoColor(timeText: self.startTimeLabel.text ?? defaultTimeString)
     }
     
     @IBAction func searchLocationBtnAction(_ sender: Any) {
@@ -84,6 +107,13 @@ class MainVC: UIViewController {
         welcomeVC.modalPresentationStyle = .fullScreen
         self.present(welcomeVC, animated: true, completion: nil)
     }
+    
+    @IBAction func saveTimeBtnAction(_ sender: Any) {
+        endTimeLabel.text = DateManager.shared.getTimeToString(Date())
+        endTimeLabel.textColor = UIColor.black
+        
+    }
+    
     
     
     func setTimeInfo() -> String{
@@ -97,9 +127,9 @@ class MainVC: UIViewController {
     
     func setTimeInfoColor(timeText : String) {
         if timeText == defaultTimeString {
-            self.timeInfoLabel.textColor = UIColor.gray
+            self.startTimeLabel.textColor = UIColor.gray
         } else {
-            self.timeInfoLabel.textColor = UIColor.black
+            self.startTimeLabel.textColor = UIColor.black
         }
     }
     
@@ -180,7 +210,7 @@ extension MainVC: CLLocationManagerDelegate {
                 
                 self.currentLabel.text = getAdress(placemarks: placemarks)
                 
-                if self.timeInfoLabel.text == defaultTimeString {
+                if self.startTimeLabel.text == defaultTimeString {
                         
                     let cLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                         
@@ -192,8 +222,8 @@ extension MainVC: CLLocationManagerDelegate {
                             
                         if distance <= 10 {
                                 UserDefaultsManager.workStartTime = DateManager.shared.getDataToString(Date())
-                                self.timeInfoLabel.text = self.setTimeInfo()
-                                setTimeInfoColor(timeText: self.timeInfoLabel.text ?? defaultTimeString)
+                                self.startTimeLabel.text = self.setTimeInfo()
+                                setTimeInfoColor(timeText: self.startTimeLabel.text ?? defaultTimeString)
                                 NotificationManager.shared.requestSendNoti(timer: UserDefaultsManager.workStartTime)
                         }
                     }
