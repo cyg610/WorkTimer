@@ -26,6 +26,14 @@ class MainVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var editWorkingTimeView: UIView!
+    
+    @IBOutlet weak var workingTimeLabel: UILabel! {
+        didSet {
+            workingTimeLabel.text = "\(UserDefaultsManager.workStartTime!) 시간"
+        }
+    }
+    
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton! {
@@ -84,6 +92,9 @@ class MainVC: UIViewController {
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
+        let popupGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEditWorkView(_:)))
+        editWorkingTimeView.addGestureRecognizer(popupGesture)
+        
         self.startTimeLabel.text = setTimeInfo()
         setTimeInfoColor(timeText: self.startTimeLabel.text ?? defaultTimeString)
     }
@@ -114,6 +125,13 @@ class MainVC: UIViewController {
         
     }
     
+    @objc func tapEditWorkView(_ gesture: UITapGestureRecognizer) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "popUp", bundle: nil)
+        let viewcontroller = storyboard.instantiateViewController(withIdentifier: "editWorkTimePopUp")
+        viewcontroller.modalPresentationStyle = .overFullScreen
+        viewcontroller.modalTransitionStyle = .coverVertical
+        present(viewcontroller, animated: true)
+    }
     
     
     func setTimeInfo() -> String{

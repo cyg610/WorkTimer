@@ -13,6 +13,9 @@ class UserDefaultsManager {
     @UserDefault(key: "workStartTime", defaultValue: "")
     static var workStartTime :  String?
     
+    @UserDefault(key: "workingTime", defaultValue: 7)
+    static var workingTime :  Int?
+    
     @UserDefault(key: "destinationAdress", defaultValue: "")
     static var destinationAdress :  String?
     
