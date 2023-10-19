@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		510282FBECCFF3088022AAA4 /* Pods_WorkTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D117DF83B03430E18B0E3DA /* Pods_WorkTimer.framework */; };
 		B415D3CA2A06A368009D06D5 /* editWorkingTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415D3C92A06A368009D06D5 /* editWorkingTimeVC.swift */; };
+		B438D9DA2AE129AE00EB4590 /* TimeCheckTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438D9D92AE129AE00EB4590 /* TimeCheckTitleView.swift */; };
 		B4457BC92A069F4500EE4BB8 /* popUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4457BC82A069F4500EE4BB8 /* popUp.storyboard */; };
 		B450D1DD299D5E7600CDEE82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */; };
 		B450D1DF299D5E7600CDEE82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B450D1DE299D5E7600CDEE82 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 		B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF95299E6A8400AC5F3B /* DateManager.swift */; };
 		B4D7AF99299E74DA00AC5F3B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */; };
 		B4D7AF9E29A5D10500AC5F3B /* searchLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7AF9D29A5D10500AC5F3B /* searchLocationVC.swift */; };
+		B4FF0AF82AE129CA001F81DB /* TimeCheckTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4FF0AF72AE129CA001F81DB /* TimeCheckTitleView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,7 @@
 		465B756973AD02A44BFD45D5 /* Pods-WorkTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkTimer.debug.xcconfig"; path = "Target Support Files/Pods-WorkTimer/Pods-WorkTimer.debug.xcconfig"; sourceTree = "<group>"; };
 		5D117DF83B03430E18B0E3DA /* Pods_WorkTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B415D3C92A06A368009D06D5 /* editWorkingTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editWorkingTimeVC.swift; sourceTree = "<group>"; };
+		B438D9D92AE129AE00EB4590 /* TimeCheckTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCheckTitleView.swift; sourceTree = "<group>"; };
 		B4457BC82A069F4500EE4BB8 /* popUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = popUp.storyboard; sourceTree = "<group>"; };
 		B450D1D9299D5E7600CDEE82 /* WorkTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		B4D7AF95299E6A8400AC5F3B /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B4D7AF9D29A5D10500AC5F3B /* searchLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchLocationVC.swift; sourceTree = "<group>"; };
+		B4FF0AF72AE129CA001F81DB /* TimeCheckTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeCheckTitleView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,15 @@
 			path = popUp;
 			sourceTree = "<group>";
 		};
+		B438D9D62AE127A600EB4590 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				B4FF0AF72AE129CA001F81DB /* TimeCheckTitleView.xib */,
+				B438D9D92AE129AE00EB4590 /* TimeCheckTitleView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		B450D1D0299D5E7600CDEE82 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +114,8 @@
 		B450D1DB299D5E7600CDEE82 /* WorkTimer */ = {
 			isa = PBXGroup;
 			children = (
+				B4FF0AF92AE134ED001F81DB /* Extension */,
+				B438D9D62AE127A600EB4590 /* CustomView */,
 				B415D3C82A06A33E009D06D5 /* popUp */,
 				B4D7AF97299E6A8C00AC5F3B /* Util */,
 				B450D1DC299D5E7600CDEE82 /* AppDelegate.swift */,
@@ -123,6 +138,13 @@
 				B4D7AF98299E74DA00AC5F3B /* NotificationManager.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		B4FF0AF92AE134ED001F81DB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +210,7 @@
 				B450D1E9299D5E7700CDEE82 /* LaunchScreen.storyboard in Resources */,
 				B450D1E6299D5E7700CDEE82 /* Assets.xcassets in Resources */,
 				B450D1E4299D5E7600CDEE82 /* Main.storyboard in Resources */,
+				B4FF0AF82AE129CA001F81DB /* TimeCheckTitleView.xib in Resources */,
 				B4457BC92A069F4500EE4BB8 /* popUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +270,7 @@
 				B4D7AF96299E6A8400AC5F3B /* DateManager.swift in Sources */,
 				B450D1E1299D5E7600CDEE82 /* MainVC.swift in Sources */,
 				B4D7AF9E29A5D10500AC5F3B /* searchLocationVC.swift in Sources */,
+				B438D9DA2AE129AE00EB4590 /* TimeCheckTitleView.swift in Sources */,
 				B450D1DD299D5E7600CDEE82 /* AppDelegate.swift in Sources */,
 				B450D1DF299D5E7600CDEE82 /* SceneDelegate.swift in Sources */,
 			);

@@ -18,7 +18,7 @@ class editWorkingTimeVC : UIViewController {
     }
     @IBOutlet weak var editTextField: UITextField! {
         didSet {
-            editTextField.text = UserDefaultsManager.workStartTime
+            editTextField.text = "\(UserDefaultsManager.workingTime!)"
         }
     }
     

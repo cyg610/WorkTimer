@@ -18,21 +18,12 @@ class MainVC: UIViewController {
     var locationLatitude : CLLocationDegrees = 0
     var locationLongitude : CLLocationDegrees = 0
     
-    
-    @IBOutlet weak var barContentView: UIView! {
+    @IBOutlet weak var titleView: TimeCheckTitleView! {
         didSet {
-            barContentView.layer.cornerRadius = 5
-            barContentView.layer.shadowColor = UIColor.gray.cgColor
+
         }
     }
     
-    @IBOutlet weak var editWorkingTimeView: UIView!
-    
-    @IBOutlet weak var workingTimeLabel: UILabel! {
-        didSet {
-            workingTimeLabel.text = "\(UserDefaultsManager.workStartTime!) 시간"
-        }
-    }
     
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
@@ -93,7 +84,7 @@ class MainVC: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         let popupGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEditWorkView(_:)))
-        editWorkingTimeView.addGestureRecognizer(popupGesture)
+        titleView.addGestureRecognizer(popupGesture)
         
         self.startTimeLabel.text = setTimeInfo()
         setTimeInfoColor(timeText: self.startTimeLabel.text ?? defaultTimeString)
@@ -135,6 +126,7 @@ class MainVC: UIViewController {
     
     
     func setTimeInfo() -> String{
+        DateManager.shared.comparedDateToReset()
         if let timer = UserDefaultsManager.workStartTime, timer != "" {
             let timeArray = timer.split(separator: " ")
             return String(timeArray[1])
